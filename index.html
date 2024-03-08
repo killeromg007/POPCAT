@@ -37,26 +37,6 @@
             font-size: 14px;
         }
 
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-
-        nav ul li a {
-            color: #00ff00;
-            text-decoration: none;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
         main {
             padding: 70px 20px 20px;
             margin-top: 40px;
@@ -95,6 +75,23 @@
             font-size: 14px;
         }
 
+        .input-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #000000;
+            border-top: 1px solid #00ff00;
+        }
+
+        .input-prompt {
+            color: #00ff00;
+            margin-right: 5px;
+        }
+
         input[type="text"] {
             background-color: #000000;
             border: none;
@@ -103,8 +100,7 @@
             font-family: 'Consolas', monospace;
             font-size: 16px;
             padding: 5px;
-            margin-top: 20px;
-            width: calc(100% - 20px);
+            width: calc(100% - 80px);
             box-sizing: border-box;
             outline: none;
         }
@@ -117,15 +113,9 @@
 </head>
 <body>
     <header>
-        <h1>Command Line Website</h1>
-        <p>&copy; 2024 Your Company Name</p>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+        <header>
+            <p>&copy; 2024 Your Company Name</p>
+        </header>
     </header>
     
     <main>
@@ -137,6 +127,11 @@
     <footer>
         <p>&copy; 2024 Command Line Website</p>
     </footer>
+
+    <div class="input-container">
+        <span class="input-prompt">C:\Users\[username]></span>
+        <input type="text" placeholder="Type a command...">
+    </div>
 
     <script>
         var loggedIn = false;
@@ -192,9 +187,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            var inputField = document.createElement("input");
-            inputField.type = "text";
-            inputField.placeholder = "Type a command...";
+            var inputField = document.querySelector("input[type='text']");
             inputField.addEventListener("keydown", function(event) {
                 if (event.key === "Enter") {
                     var command = inputField.value.trim();
@@ -202,7 +195,6 @@
                     processCommand(command);
                 }
             });
-            document.body.appendChild(inputField);
         });
     </script>
 </body>
