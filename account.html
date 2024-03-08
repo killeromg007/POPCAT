@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        
+        form {
+            margin-top: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f2dede;
+            color: #a94442;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" name="login-username" required>
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="login-password" required>
+            <input type="submit" value="Login">
+            <div id="login-message" class="message" style="display: none;"></div>
+        </form>
+        <hr>
+        <h2>Register</h2>
+        <form id="register-form">
+            <label for="register-username">Username</label>
+            <input type="text" id="register-username" name="register-username" required>
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" name="register-password" required>
+            <input type="submit" value="Register">
+            <div id="register-message" class="message" style="display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var username = document.getElementById("login-username").value;
+            var password = document.getElementById("login-password").value;
+            // Here you can add your login logic, for now, let's just display a message
+            document.getElementById("login-message").innerHTML = "Login successful for " + username + ".";
+            document.getElementById("login-message").style.display = "block";
+        });
+
+        document.getElementById("register-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var username = document.getElementById("register-username").value;
+            var password = document.getElementById("register-password").value;
+            // Here you can add your register logic, for now, let's just display a message
+            document.getElementById("register-message").innerHTML = "User " + username + " registered successfully.";
+            document.getElementById("register-message").style.display = "block";
+        });
+    </script>
+</body>
+</html>
