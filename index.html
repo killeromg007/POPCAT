@@ -37,8 +37,32 @@
             font-size: 14px;
         }
 
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background-color: #000000;
+            border: 1px solid #00ff00;
+            border-bottom: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .tab:hover {
+            background-color: #111111;
+        }
+
+        .tab.active {
+            background-color: #111111;
+            border-bottom: 1px solid #000000;
+        }
+
         main {
-            padding: 70px 20px 20px;
+            padding: 130px 20px 20px;
             margin-top: 40px;
         }
 
@@ -113,11 +137,16 @@
 </head>
 <body>
     <header>
-        <header>
-            <p>&copy; 2024 Your Company Name</p>
-        </header>
+        <h1>Command Line Website</h1>
+        <p>&copy; 2024 Your Company Name</p>
     </header>
-    
+
+    <div class="tabs">
+        <div class="tab active">Home</div>
+        <div class="tab">About</div>
+        <div class="tab">Contact</div>
+    </div>
+
     <main>
         <section id="output">
             <!-- Output will be displayed here -->
@@ -194,6 +223,16 @@
                     inputField.value = "";
                     processCommand(command);
                 }
+            });
+
+            var tabs = document.querySelectorAll(".tab");
+            tabs.forEach(function(tab) {
+                tab.addEventListener("click", function() {
+                    tabs.forEach(function(t) {
+                        t.classList.remove("active");
+                    });
+                    this.classList.add("active");
+                });
             });
         });
     </script>
