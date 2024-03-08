@@ -6,24 +6,33 @@
     <title>Command Line Website</title>
     <style>
         body {
-            background-color: #000;
-            color: #0f0;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #0f0f0f;
+            color: #00ff00;
+            font-family: 'Lucida Console', Monaco, monospace;
+            margin: 0;
+            padding: 0;
         }
 
         header {
             padding: 10px;
-            background-color: #333;
-            border-bottom: 1px solid #888;
+            background-color: #1e1e1e;
+            border-bottom: 1px solid #444;
             text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
         header h1 {
             margin: 0;
+            font-size: 24px;
         }
 
         header p {
             margin: 5px 0;
+            font-size: 14px;
         }
 
         nav ul {
@@ -38,7 +47,7 @@
         }
 
         nav ul li a {
-            color: #0f0;
+            color: #00ff00;
             text-decoration: none;
         }
 
@@ -47,58 +56,65 @@
         }
 
         main {
-            padding: 20px;
+            padding: 70px 20px 20px;
+            margin-top: 40px;
         }
 
         section {
             margin-bottom: 20px;
-            border-left: 2px solid #0f0;
+            border-left: 2px solid #00ff00;
             padding-left: 10px;
         }
 
         section h2 {
-            color: #0f0;
+            color: #00ff00;
+            font-size: 18px;
         }
 
         section p {
-            color: #0f0;
+            color: #00ff00;
         }
 
         footer {
             padding: 10px;
-            background-color: #333;
-            border-top: 1px solid #888;
+            background-color: #1e1e1e;
+            border-top: 1px solid #444;
             text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
         }
 
         footer p {
-            color: #0f0;
+            color: #00ff00;
             margin: 0;
+            font-size: 14px;
         }
 
         input[type="text"] {
-            background-color: transparent;
+            background-color: #0f0f0f;
             border: none;
-            border-bottom: 1px solid #0f0;
-            color: #0f0;
-            font-family: 'Courier New', Courier, monospace;
+            border-bottom: 1px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Lucida Console', Monaco, monospace;
             font-size: 16px;
             padding: 5px;
             margin-top: 20px;
-            width: 100%;
+            width: calc(100% - 20px);
             box-sizing: border-box;
             outline: none;
         }
 
         input[type="text"]::placeholder {
-            color: #0f0;
+            color: #00ff00;
             opacity: 0.5;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>$ Command Line Website</h1>
+        <h1>Command Line Website</h1>
         <p>&copy; 2024 Your Company Name</p>
         <nav>
             <ul>
