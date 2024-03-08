@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Line Website</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        header {
+            padding: 10px;
+            background-color: #333;
+            border-bottom: 1px solid #888;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header p {
+            margin: 5px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: #0f0;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            border-left: 2px solid #0f0;
+            padding-left: 10px;
+        }
+
+        section h2 {
+            color: #0f0;
+        }
+
+        section p {
+            color: #0f0;
+        }
+
+        footer {
+            padding: 10px;
+            background-color: #333;
+            border-top: 1px solid #888;
+            text-align: center;
+        }
+
+        footer p {
+            color: #0f0;
+            margin: 0;
+        }
+
+        input[type="text"] {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #0f0;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            padding: 5px;
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input[type="text"]::placeholder {
+            color: #0f0;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>$ Command Line Website</h1>
+        <p>&copy; 2024 Your Company Name</p>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="output">
+            <!-- Output will be displayed here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Command Line Website</p>
+    </footer>
+
+    <script>
+        var loggedIn = false;
+        var username = "";
+
+        var users = [];
+
+        function processCommand(command) {
+            switch(command) {
+                case "init":
+                    if (loggedIn) {
+                        document.getElementById("output").innerHTML += "<p>Welcome back, " + username + "!</p>";
+                    } else {
+                        document.getElementById("output").innerHTML += "<p>You need to log in first.</p>";
+                    }
+                    break;
+                case "help":
+                    document.getElementById("output").innerHTML += "<p>Available commands:</p>";
+                    document.getElementById("output").innerHTML += "<ul>";
+                    document.getElementById("output").innerHTML += "<li>init - Initialize</li>";
+                    document.getElementById("output").innerHTML += "<li>help - Display available commands</li>";
+                    document.getElementById("output").innerHTML += "<li>login [username] [password] - Log in</li>";
+                    document.getElementById("output").innerHTML += "<li>register [username] [password] - Register a new account</li>";
+                    document.getElementById("output").innerHTML += "<li>visit people total - Display total number of registered users</li>";
+                    document.getElementById("output").innerHTML += "</ul>";
+                    break;
+                case "visit people total":
+                    document.getElementById("output").innerHTML += "<p>Total registered users: " + users.length + "</p>";
+                    break;
+                default:
+                    if (command.startsWith("login")) {
+                        var args = command.split(" ");
+                        if (args.length === 3 && args[1] === "username" && args[2] === "password") {
+                            loggedIn = true;
+                            username = args[1];
+                            document.getElementById("output").innerHTML += "<p>Welcome, " + username + "!</p>";
+                        } else {
+                            document.getElementById("output").innerHTML += "<p>Invalid login command format. Please use: login [username] [password]</p>";
+                        }
+                    } else if (command.startsWith("register")) {
+                        var args = command.split(" ");
+                        if (args.length === 3) {
+                            var newUser = {username: args[1], password: args[2]};
+                            users.push(newUser);
+                            document.getElementById("output").innerHTML += "<p>Registration successful. You can now log in with your new account.</p>";
+                        } else {
+                            document.getElementById("output").innerHTML += "<p>Invalid register command format. Please use: register [username] [password]</p>";
+                        }
+                    } else {
+                        document.getElementById("output").innerHTML += "<p>Command not recognized: " + command + "</p>";
+                    }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var inputField = document.createElement("input");
+            inputField.type = "text";
+            inputField.placeholder = "Type a command...";
+            inputField.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    var command = inputField.value.trim();
+                    inputField.value = "";
+                    processCommand(command);
+                }
+            });
+            document.body.appendChild(inputField);
+        });
+    </script>
+</body>
+</html>
