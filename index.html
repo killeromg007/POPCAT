@@ -138,7 +138,6 @@
 <body>
     <header>
         <h1>Command Line Website</h1>
-        <p>&copy; 2024 Your Company Name</p>
     </header>
 
     <div class="tabs">
@@ -193,10 +192,17 @@
                 default:
                     if (command.startsWith("login")) {
                         var args = command.split(" ");
-                        if (args.length === 3 && args[1] === "username" && args[2] === "password") {
-                            loggedIn = true;
-                            username = args[1];
-                            document.getElementById("output").innerHTML += "<p>Welcome, " + username + "!</p>";
+                        if (args.length === 3) {
+                            var inputUsername = args[1];
+                            var inputPassword = args[2];
+                            var user = users.find(u => u.username === inputUsername && u.password === inputPassword);
+                            if (user) {
+                                loggedIn = true;
+                                username = inputUsername;
+                                document.getElementById("output").innerHTML += "<p>Welcome, " + username + "!</p>";
+                            } else {
+                                document.getElementById("output").innerHTML += "<p>Invalid username or password.</p>";
+                            }
                         } else {
                             document.getElementById("output").innerHTML += "<p>Invalid login command format. Please use: login [username] [password]</p>";
                         }
